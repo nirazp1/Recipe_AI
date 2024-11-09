@@ -138,5 +138,4 @@ For support, email nirajpandye283@gmail.com or open an issue in the repository.
   - User authentication
   - Diet preference management
 
----
-Made with ❤️ by [Your Name]
+
