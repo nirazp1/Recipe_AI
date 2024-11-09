@@ -33,7 +33,7 @@ A modern web application that leverages AI to generate personalized recipes base
 1. **Clone the repository**
 ```bash
 git clone https://github.com/nirazp1/SMART-RECIPE-APP
-cd smart-recipe-generator
+cd SMART-RECIPE-APP
 ```
 
 2. **Set up the server**
