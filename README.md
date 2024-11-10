@@ -5,9 +5,7 @@
   <p><em>Your Intelligent Kitchen Assistant</em></p>
 </div>
 
-<div align="center">
-  <img src="docs/images/hero-banner.png" alt="Recipe AI Banner" width="100%">
-</div>
+
 
 ## 🌟 Overview
 
@@ -68,8 +66,8 @@ Recipe AI is a modern web application that transforms your available ingredients
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/yourusername/recipe-ai
-cd recipe-ai
+git clone [https://github.com/nirazp1/Recipe_AI]
+cd Recipe_AI
 ```
 
 2. **Install dependencies**
@@ -183,13 +181,5 @@ For support, email nirajpandye283@gmail.com or open an issue in the repository.
   - Diet preference management
 
 
-=======
-- React.js community
-- All contributors and supporters
 
----
-<div align="center">
-  <img src="docs/images/footer-banner.png" alt="Recipe AI Footer" width="100%">
-  <p>Made with ❤️ by [Your Name]</p>
-</div>
->>>>>>> c65fe85 (Enhanced UI/UX and added new features:)
+
