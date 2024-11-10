@@ -4,7 +4,9 @@ node_modules/
 .pnp.js
 
 # Environment variables and secrets
+/Users/nirajpandey/Desktop/diet /hello/SMART-RECIPE-APP/server/.env
 .env
+server/.env
 .env.local
 .env.development
 .env.test
