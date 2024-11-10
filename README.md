@@ -66,7 +66,7 @@ Recipe AI is a modern web application that transforms your available ingredients
 
 1. **Clone the repository**
 ```bash
-git clone [https://github.com/nirazp1/Recipe_AI]
+git clone https://github.com/nirazp1/Recipe_AI
 cd Recipe_AI
 ```
 
