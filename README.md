@@ -1,29 +1,65 @@
-# Smart Recipe Generator 🍳
+# 👨‍🍳 Recipe AI
 
-A modern web application that leverages AI to generate personalized recipes based on available ingredients and dietary preferences.
+<div align="center">
+  <h1>👨‍🍳 Recipe AI</h1>
+  <p><em>Your Intelligent Kitchen Assistant</em></p>
+</div>
 
-## 🌟 Features
+<div align="center">
+  <img src="docs/images/hero-banner.png" alt="Recipe AI Banner" width="100%">
+</div>
 
-- **AI-Powered Recipe Generation**: Utilizes Google's Gemini AI to create custom recipes
-- **Personalized Diet Plans**: Supports multiple diet types including:
-  - Vegetarian
-  - Vegan
-  - Keto
-  - Paleo
-  - Low-Carb
-  - Mediterranean
-  - Gluten-Free
-  - Dairy-Free
-- **User Authentication**: Secure account management with JWT
-- **Preference Management**: Save and manage dietary preferences
-- **Responsive Design**: Optimized for both desktop and mobile devices
-- **Dark/Light Mode**: Eye-friendly theme options
-- **Nutritional Information**: Detailed nutritional breakdown per recipe
+## 🌟 Overview
+
+Recipe AI is a modern web application that transforms your available ingredients into delicious recipes using artificial intelligence. With an intuitive interface and powerful features, it makes cooking both fun and efficient.
+
+
+
+## ✨ Key Features
+
+### 🤖 AI-Powered Recipe Generation
+<div align="center">
+  <img src="docs/images/app-demo.png" alt="Recipe Generation Demo" width="70%">
+</div>
+
+- Personalized recipe suggestions based on your ingredients
+- Smart adaptation to dietary preferences
+- Nutritional information calculation
+- Step-by-step cooking instructions
+
+### 🧪 Smart Pantry Management
+<div align="center">
+  <img src="docs/images/smart-pantry.png" alt="Smart Pantry Interface" width="70%">
+</div>
+
+- Inventory tracking with expiration dates
+- Low stock alerts
+- Categorized ingredient organization
+- Quick ingredient selection for recipes
+
+### 👩‍🍳 Interactive Cooking Mode
+<div align="center">
+  <img src="docs/images/cooking-mode.png" alt="Cooking Mode Interface" width="70%">
+</div>
+
+- Step-by-step guidance
+- Built-in timers
+- Ingredient checklist
+- Progress tracking
+
+### 🎨 Modern UI/UX
+<div align="center">
+  <img src="docs/images/ui-showcase.png" alt="UI/UX Showcase" width="70%">
+</div>
+
+- Responsive design for all devices
+- Dark/Light mode
+- Intuitive navigation
+- Smooth animations
 
 ## 🚀 Getting Started
 
 ### Prerequisites
-
 - Node.js (v18.0.0 or higher)
 - MongoDB
 - Google Gemini API key
@@ -32,30 +68,28 @@ A modern web application that leverages AI to generate personalized recipes base
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/nirazp1/SMART-RECIPE-APP
-cd SMART-RECIPE-APP
+git clone https://github.com/yourusername/recipe-ai
+cd recipe-ai
 ```
 
-2. **Set up the server**
+2. **Install dependencies**
 ```bash
+# Install server dependencies
 cd server
 npm install
-cp .env.example .env
+
+# Install client dependencies
+cd ../client
+npm install
 ```
 
-3. **Configure environment variables**
-Edit the `.env` file in the server directory:
-```env
+3. **Environment Setup**
+```bash
+# Server configuration (.env)
 PORT=5002
 GEMINI_API_KEY=your_gemini_api_key
 MONGODB_URI=mongodb://localhost:27017/recipe-app
 JWT_SECRET=your_secure_jwt_secret
-```
-
-4. **Set up the client**
-```bash
-cd ../client
-npm install
 ```
 
 ### Running the Application
@@ -72,17 +106,34 @@ cd client
 npm start
 ```
 
-The application will be available at:
+Access the application at:
 - Frontend: `http://localhost:3000`
 - Backend: `http://localhost:5002`
 
-## 🏗️ Architecture
+## 📱 Features Showcase
+
+### User Authentication
+<div align="center">
+  <img src="docs/images/auth-flow.png" alt="Authentication Flow" width="70%">
+</div>
+
+### Recipe Generation
+<div align="center">
+  <img src="docs/images/recipe-flow.png" alt="Recipe Generation Flow" width="70%">
+</div>
+
+### Smart Pantry
+<div align="center">
+  <img src="docs/images/pantry-management.png" alt="Pantry Management" width="70%">
+</div>
+
+## 🛠️ Technology Stack
 
 ### Frontend
 - React.js
-- Axios for API requests
-- React Icons
-- CSS with CSS Variables for theming
+- Context API for state management
+- CSS with CSS Variables
+- Responsive Design
 
 ### Backend
 - Node.js with Express
@@ -90,23 +141,15 @@ The application will be available at:
 - JWT Authentication
 - Google Gemini AI Integration
 
-## 🔒 Security
+## 📦 Project Structure
 
-- JWT-based authentication
-- Secure password hashing with bcrypt
-- Environment variable protection
-- CORS configuration
-- Input validation and sanitization
-
-## 📝 API Documentation
-
-### Authentication Endpoints
-- `POST /api/auth/register` - User registration
-- `POST /api/auth/login` - User login
-- `PUT /api/auth/preferences` - Update user preferences
-
-### Recipe Endpoints
-- `POST /api/recipes/suggest` - Generate recipe suggestions
+```
+recipe-ai/
+├── client/                 # Frontend React application
+├── server/                 # Backend Node.js server
+├── docs/                   # Documentation and images
+└── README.md              # Project documentation
+```
 
 ## 🤝 Contributing
 
@@ -116,7 +159,7 @@ The application will be available at:
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## 📜 License
+## 📝 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
@@ -124,6 +167,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - Google Gemini AI for recipe generation
 - MongoDB for database services
+<<<<<<< HEAD
 - React.js community for frontend tools and libraries
 
 ## 📞 Support
@@ -139,3 +183,13 @@ For support, email nirajpandye283@gmail.com or open an issue in the repository.
   - Diet preference management
 
 
+=======
+- React.js community
+- All contributors and supporters
+
+---
+<div align="center">
+  <img src="docs/images/footer-banner.png" alt="Recipe AI Footer" width="100%">
+  <p>Made with ❤️ by [Your Name]</p>
+</div>
+>>>>>>> c65fe85 (Enhanced UI/UX and added new features:)

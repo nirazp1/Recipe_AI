@@ -2,6 +2,11 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
 const userSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+    trim: true
+  },
   email: {
     type: String,
     required: true,
@@ -11,24 +16,25 @@ const userSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    required: true
-  },
-  name: {
-    type: String,
-    required: true
+    required: true,
+    minlength: 6
   },
   dietPreferences: {
     dietType: {
       type: String,
-      enum: ['regular', 'keto', 'vegetarian', 'vegan', 'paleo', 'low-carb', 'mediterranean', 'gluten-free', 'dairy-free'],
+      enum: ['regular', 'vegetarian', 'vegan', 'keto', 'paleo', 'low-carb'],
       default: 'regular'
     },
-    additionalRestrictions: [String],
     servingSize: {
       type: Number,
       default: 2
     },
-    allergies: [String]
+    allergies: [{
+      type: String
+    }],
+    additionalRestrictions: [{
+      type: String
+    }]
   },
   createdAt: {
     type: Date,
@@ -44,10 +50,11 @@ userSchema.pre('save', async function(next) {
   next();
 });
 
-// Method to compare passwords
+// Method to compare password
 userSchema.methods.comparePassword = async function(candidatePassword) {
   return bcrypt.compare(candidatePassword, this.password);
 };
 
 const User = mongoose.model('User', userSchema);
+
 module.exports = User; 

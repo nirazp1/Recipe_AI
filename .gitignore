@@ -1,40 +1,143 @@
-# Environment variables
-.env
-.env.local
-.env.development
-.env.test
-.env.production
-
 # Dependencies
 node_modules/
 /.pnp
 .pnp.js
 
+# Environment variables and secrets
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+.env.development.local
+.env.test.local
+.env.production.local
+*.env
+config.js
+config.json
+secrets.json
+credentials.json
+private.key
+*.pem
+
+# API Keys and Tokens
+**/config/keys.js
+**/config/secrets.js
+**/config/credentials.js
+**/config/tokens.js
+**/config/*.key
+**/config/*.pem
+
+# Build outputs
+/build/
+/dist/
+/out/
+/.next/
+/.nuxt/
+/.vuepress/dist
+/.serverless/
+
+# Debug & Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+debug.log
+*.log
+logs/
+log/
+
+# IDE and editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+*.swn
+*.bak
+*.sublime*
+.project
+.classpath
+.settings/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
 # Testing
 /coverage
+.nyc_output
+junit.xml
+*.lcov
 
-# Production
-/build
-/dist
+# Cache directories
+.npm
+.eslintcache
+.stylelintcache
+.cache
+.parcel-cache
+.next
+.nuxt
+.vuepress
+.temp
+.docusaurus
+
+# Yarn
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
 
 # Misc
-.DS_Store
+*.bak
+*.tmp
+*.temp
+*.swp
+*.zip
+*.tar.gz
+*.tgz
+.env.*.local
+
+# Local development
+*.local
+local.properties
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
-.idea/
-.vscode/
 
-# Debug logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# Database files
+*.sqlite
+*.sqlite3
+*.db
+dump.rdb
 
-# Local development files
-*.local
-*.log
+# Sensitive documentation
+private/
+confidential/
+secrets/
+credentials/
 
-# API keys and secrets
-**/config/keys.js
-**/config/secrets.js 
+# Personal notes and TODOs
+notes.md
+todo.md
+NOTES.md
+TODO.md

@@ -2,15 +2,47 @@ const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+const auth = require('../middleware/auth');
+
+// Helper function to generate JWT token
+const generateToken = (userId) => {
+  return jwt.sign(
+    { userId },
+    process.env.JWT_SECRET,
+    { expiresIn: '7d' }
+  );
+};
 
 // Register new user
 router.post('/register', async (req, res) => {
   try {
+    console.log('Registration request body:', req.body);
     const { email, password, name, dietPreferences } = req.body;
+
+    console.log('Extracted data:', { 
+      email, 
+      password: '***', 
+      name, 
+      dietPreferences 
+    });
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      console.log('Invalid email format:', email);
+      return res.status(400).json({ error: 'Invalid email format' });
+    }
+
+    // Validate password strength
+    if (!password || password.length < 6) {
+      console.log('Invalid password length');
+      return res.status(400).json({ error: 'Password must be at least 6 characters long' });
+    }
 
     // Check if user already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
+      console.log('Email already registered:', email);
       return res.status(400).json({ error: 'Email already registered' });
     }
 
@@ -19,17 +51,19 @@ router.post('/register', async (req, res) => {
       email,
       password,
       name,
-      dietPreferences
+      dietPreferences: {
+        dietType: dietPreferences?.dietType || 'regular',
+        servingSize: dietPreferences?.servingSize || 2,
+        allergies: dietPreferences?.allergies || [],
+        additionalRestrictions: dietPreferences?.additionalRestrictions || []
+      }
     });
 
     await user.save();
+    console.log('User saved successfully:', user._id);
 
     // Generate token
-    const token = jwt.sign(
-      { userId: user._id },
-      process.env.JWT_SECRET,
-      { expiresIn: '7d' }
-    );
+    const token = generateToken(user._id);
 
     res.status(201).json({
       token,
@@ -41,7 +75,12 @@ router.post('/register', async (req, res) => {
       }
     });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.error('Registration error:', error);
+    res.status(500).json({ 
+      error: 'Registration failed',
+      details: error.message,
+      stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
+    });
   }
 });
 
@@ -53,29 +92,17 @@ router.post('/login', async (req, res) => {
     // Find user
     const user = await User.findOne({ email });
     if (!user) {
-      console.log('Login attempt failed: User not found -', email);
       return res.status(401).json({ error: 'Invalid credentials' });
     }
 
     // Check password
     const isMatch = await user.comparePassword(password);
     if (!isMatch) {
-      console.log('Login attempt failed: Invalid password -', email);
       return res.status(401).json({ error: 'Invalid credentials' });
     }
 
-    console.log('User logged in successfully:', {
-      id: user._id,
-      email: user.email,
-      name: user.name
-    });
-
     // Generate token
-    const token = jwt.sign(
-      { userId: user._id },
-      process.env.JWT_SECRET,
-      { expiresIn: '7d' }
-    );
+    const token = generateToken(user._id);
 
     res.json({
       token,
@@ -92,14 +119,29 @@ router.post('/login', async (req, res) => {
   }
 });
 
+// Get current user profile
+router.get('/me', auth, async (req, res) => {
+  try {
+    res.json({
+      user: {
+        id: req.user._id,
+        email: req.user.email,
+        name: req.user.name,
+        dietPreferences: req.user.dietPreferences
+      }
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 // Update user preferences
-router.put('/preferences', async (req, res) => {
+router.put('/preferences', auth, async (req, res) => {
   try {
     const { dietPreferences } = req.body;
-    const userId = req.user.id; // Will be set by auth middleware
-
+    
     const user = await User.findByIdAndUpdate(
-      userId,
+      req.user._id,
       { dietPreferences },
       { new: true }
     );
@@ -117,14 +159,11 @@ router.put('/preferences', async (req, res) => {
   }
 });
 
-// Add a new route to check current users
-router.get('/users', async (req, res) => {
+// Logout (optional - client-side can just remove the token)
+router.post('/logout', auth, async (req, res) => {
   try {
-    const users = await User.find({}, 'email name createdAt dietPreferences');
-    console.log('Current users in database:', users);
-    res.json(users);
+    res.json({ message: 'Logged out successfully' });
   } catch (error) {
-    console.error('Error fetching users:', error);
     res.status(500).json({ error: error.message });
   }
 });
